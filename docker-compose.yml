@@ -30,6 +30,11 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.role == monitoring
 
   alertmanager:
     image: prom/alertmanager:v0.28.1
@@ -46,6 +51,11 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.role == monitoring
 
   nodeexporter:
     image: prom/node-exporter:v1.9.1
@@ -119,6 +129,11 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.role == monitoring
 
   pushgateway:
     image: prom/pushgateway:v1.11.0
@@ -130,6 +145,11 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.role == monitoring
 
   caddy:
     image: caddy:2.10.0
@@ -151,3 +171,8 @@ services:
       - monitor-net
     labels:
       org.label-schema.group: "monitoring"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.role == monitoring
